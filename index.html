@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaLab — El Arte de Aprender Idiomas con Vídeo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastel: {
+                            bg: '#FAF8F5',
+                            card: '#FFFFFF',
+                            lavender: '#E9D5FF',
+                            lavenderDark: '#C084FC',
+                            mint: '#D1FAE5',
+                            mintDark: '#34D399',
+                            peach: '#FFEDD5',
+                            peachDark: '#FDBA74',
+                            rose: '#FFE4E6',
+                            roseDark: '#FB7185',
+                            slate: '#1E293B',
+                            muted: '#64748B'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Newsreader', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAF8F5;
+            color: #1E293B;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-serif-title {
+            font-family: 'Newsreader', Georgia, serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .badge-pill {
+            transition: all 0.3s ease;
+        }
+        .badge-pill:hover {
+            transform: translateY(-2px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-pastel-lavender selection:text-pastel-slate">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-200/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-pastel-lavenderDark to-pastel-roseDark flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    L
+                </span>
+                <div>
+                    <span class="font-serif-title text-2xl font-bold tracking-tight text-pastel-slate block leading-none">LinguaLab</span>
+                    <span class="text-xs text-pastel-muted font-medium">Laboratorio de Aprendizaje Multilingüe</span>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-pastel-slate">
+                <a href="#simulador" class="hover:text-pastel-lavenderDark transition-colors">Simulador</a>
+                <a href="#laboratorio" class="hover:text-pastel-mintDark transition-colors">Concept Lab</a>
+                <a href="#desafio" class="hover:text-pastel-peachDark transition-colors">Reto Léxico</a>
+                <a href="#ciencia" class="hover:text-pastel-roseDark transition-colors">La Ciencia</a>
+            </nav>
+
+            <button onclick="scrollToSection('laboratorio')" class="px-5 py-2.5 rounded-full bg-pastel-slate text-white text-xs font-bold tracking-wider uppercase hover:bg-slate-800 transition-all shadow-sm hover:shadow">
+                Explorar Vocabulario
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative py-16 md:py-24 overflow-hidden">
+            <!-- Background Decorative Blobs -->
+            <div class="absolute top-10 left-10 w-72 h-72 bg-pastel-lavender rounded-full blur-3xl opacity-50 -z-10 pointer-events-none"></div>
+            <div class="absolute bottom-10 right-10 w-80 h-80 bg-pastel-mint rounded-full blur-3xl opacity-50 -z-10 pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pastel-rose/80 border border-pastel-roseDark/30 text-pastel-slate text-xs font-semibold mb-6">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-pastel-roseDark"></i> Edición Editorial & Investigación Didáctica
+                </div>
+
+                <h1 class="font-serif-title text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-pastel-slate mb-6 leading-[1.15]">
+                    Descubre el superpoder de los <span class="italic font-serif-title text-pastel-lavenderDark underline decoration-pastel-peach/80 decoration-4">subtítulos inteligentes</span>
+                </h1>
+
+                <p class="max-w-2xl mx-auto text-base sm:text-lg text-pastel-muted font-normal leading-relaxed mb-10">
+                    ¿Sabías que ver vídeos con subtítulos en inglés ayuda a recordar cómo se <em>escriben y suenan</em> las palabras, mientras que en español afianza su <em>significado exacto</em>? Explora la ciencia del aprendizaje audiovisual sin tecnicismos.
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <a href="#simulador" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                        Probar Simulador de Subtítulos
+                    </a>
+                    <a href="#ciencia" class="px-8 py-3.5 rounded-full bg-white border border-slate-200 text-pastel-slate font-semibold text-sm hover:bg-slate-50 transition-all">
+                        Ver Descubrimientos
+                    </a>
+                </div>
+
+                <!-- Quick Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto">
+                    <div class="p-6 rounded-3xl bg-pastel-card border border-slate-100 shadow-sm text-left">
+                        <div class="w-10 h-10 rounded-xl bg-pastel-lavender flex items-center justify-center text-purple-700 mb-4 font-bold">L2</div>
+                        <h3 class="font-bold text-lg text-pastel-slate">Subtítulos en Inglés</h3>
+                        <p class="text-xs text-pastel-muted mt-1 leading-relaxed">Ideal para afianzar la <strong>forma orthográfica y la pronunciación</strong> de palabras nuevas.</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-pastel-card border border-slate-100 shadow-sm text-left">
+                        <div class="w-10 h-10 rounded-xl bg-pastel-mint flex items-center justify-center text-emerald-700 mb-4 font-bold">L1</div>
+                        <h3 class="font-bold text-lg text-pastel-slate">Subtítulos en Español</h3>
+                        <p class="text-xs text-pastel-muted mt-1 leading-relaxed">El mejor aliado para conectar el concepto y recordar su <strong>significado exacto</strong>.</p>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-pastel-card border border-slate-100 shadow-sm text-left">
+                        <div class="w-10 h-10 rounded-xl bg-pastel-peach flex items-center justify-center text-amber-700 mb-4 font-bold">PRE</div>
+                        <h3 class="font-bold text-lg text-pastel-slate">Pre-Enseñanza Léxica</h3>
+                        <p class="text-xs text-pastel-muted mt-1 leading-relaxed">Revisar términos clave antes del vídeo <strong>evita la sobrecarga mental</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Video & Subtitle Simulator -->
+        <section id="simulador" class="py-16 bg-white border-y border-slate-200/60">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold uppercase tracking-wider text-pastel-lavenderDark bg-pastel-lavender/40 px-3 py-1 rounded-full">Experiencia Interactiva</span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl text-pastel-slate font-bold mt-3">Simulador Multimodal de Visionado</h2>
+                    <p class="text-sm text-pastel-muted mt-2 max-w-xl mx-auto">Cambia la modalidad de subtítulos en tiempo real y observa cómo responde tu cerebro ante cada estímulo verbal y visual.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- Video Canvas Area -->
+                    <div class="lg:col-span-8 rounded-3xl bg-slate-900 overflow-hidden shadow-xl border border-slate-800 relative">
+                        <!-- Simulated Video Screen -->
+                        <div class="relative aspect-video bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 flex flex-col items-center justify-center p-6 text-center">
+                            <!-- Animated Speaker SVG -->
+                            <div class="w-24 h-24 rounded-full bg-purple-500/20 flex items-center justify-center border border-purple-400/30 mb-4 animate-pulse">
+                                <i data-lucide="sparkle" class="w-10 h-10 text-pastel-lavender"></i>
+                            </div>
+
+                            <div class="px-4 py-2 rounded-full bg-black/40 backdrop-blur-md text-slate-300 text-xs tracking-wide uppercase mb-8">
+                                Academic TED-Style Talk Simulation
+                            </div>
+
+                            <!-- Audio Waveform Animation Mock -->
+                            <div class="flex items-center gap-1 h-6 mb-12">
+                                <span class="w-1 bg-purple-400 h-3 rounded-full animate-bounce"></span>
+                                <span class="w-1 bg-purple-300 h-6 rounded-full animate-bounce delay-100"></span>
+                                <span class="w-1 bg-pink-400 h-4 rounded-full animate-bounce delay-200"></span>
+                                <span class="w-1 bg-indigo-400 h-5 rounded-full animate-bounce delay-150"></span>
+                                <span class="w-1 bg-purple-400 h-2 rounded-full animate-bounce delay-300"></span>
+                            </div>
+
+                            <!-- Interactive Subtitle Bar Overlay -->
+                            <div class="absolute bottom-6 inset-x-4 sm:inset-x-8">
+                                <div id="subtitleDisplay" class="px-6 py-3 rounded-2xl bg-black/80 backdrop-blur-md text-white text-base sm:text-lg font-medium shadow-2xl transition-all duration-300 min-h-[64px] flex items-center justify-center">
+                                    <span class="text-pastel-peach">"Global challenges require innovation and community impact."</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Video Controls Bar -->
+                        <div class="p-4 bg-slate-950 flex flex-wrap items-center justify-between gap-4 border-t border-slate-800">
+                            <div class="flex items-center gap-3">
+                                <button id="playBtn" onclick="togglePlaySimulation()" class="w-10 h-10 rounded-xl bg-purple-600 hover:bg-purple-500 text-white flex items-center justify-center transition-colors">
+                                    <i data-lucide="play" class="w-5 h-5"></i>
+                                </button>
+                                <span id="timeDisplay" class="text-xs text-slate-400 font-mono">00:14 / 01:30</span>
+                            </div>
+
+                            <!-- Subtitle Toggles -->
+                            <div class="flex items-center gap-2 bg-slate-900 p-1 rounded-xl border border-slate-800">
+                                <button onclick="setSubtitleMode('l2')" id="btnL2" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white transition-all">
+                                    Subtítulos L2 (Inglés)
+                                </button>
+                                <button onclick="setSubtitleMode('l1')" id="btnL1" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all">
+                                    Subtítulos L1 (Español)
+                                </button>
+                                <button onclick="setSubtitleMode('off')" id="btnOff" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all">
+                                    Sin Subtítulos
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cognitive Load & Insight Card -->
+                    <div class="lg:col-span-4 space-y-4">
+                        <div class="p-6 rounded-3xl bg-pastel-card border border-slate-200/80 shadow-sm">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-pastel-muted mb-2">Efecto Cognitivo Activo</h4>
+                            <div id="cognitiveModeTitle" class="text-xl font-serif-title font-bold text-pastel-slate">
+                                Codificación Doble (Inglés + Inglés)
+                            </div>
+                            <p id="cognitiveModeDesc" class="text-xs text-pastel-muted mt-2 leading-relaxed">
+                                Tu cerebro vincula simultáneamente los sonidos hablados con la forma impresa de las palabras. ¡Es perfecto para mejorar tu ortografía y reconocimiento visual!
+                            </p>
+
+                            <hr class="my-4 border-slate-100">
+
+                            <!-- Indicator Meter -->
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold mb-1">
+                                        <span class="text-pastel-slate">Reconocimiento de Forma (FR)</span>
+                                        <span id="frMeterVal" class="text-purple-600">Alta Eficacia (22.09 ptos)</span>
+                                    </div>
+                                    <div class="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                                        <div id="frMeterBar" class="h-full bg-purple-500 rounded-full transition-all duration-500" style="width: 90%;"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold mb-1">
+                                        <span class="text-pastel-slate">Recuerdo de Significado (MR)</span>
+                                        <span id="mrMeterVal" class="text-emerald-600">Eficacia Media (18.28 ptos)</span>
+                                    </div>
+                                    <div class="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                                        <div id="mrMeterBar" class="h-full bg-emerald-400 rounded-full transition-all duration-500" style="width: 70%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pro Tip Card -->
+                        <div class="p-5 rounded-3xl bg-pastel-peach/40 border border-pastel-peachDark/30 flex items-start gap-3">
+                            <i data-lucide="lightbulb" class="w-5 h-5 text-amber-600 shrink-0 mt-0.5"></i>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                <strong>Recomendación Pro:</strong> Haz una primera visualización con subtítulos en inglés para fijar las palabras, y una segunda en español para asegurar que entendiste el significado profundo.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Concept Lab (Laboratorio de Conceptos) -->
+        <section id="laboratorio" class="py-16 md:py-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-pastel-mintDark bg-pastel-mint/60 px-3 py-1 rounded-full">Pre-Enseñanza Léxica</span>
+                        <h2 class="font-serif-title text-3xl sm:text-4xl text-pastel-slate font-bold mt-3">Laboratorio de Conceptos</h2>
+                        <p class="text-sm text-pastel-muted mt-2 max-w-xl">Pre-explora las palabras clave agrupadas por niveles de frecuencia antes de ver el contenido. Esto reduce la fatiga mental durante el visionado.</p>
+                    </div>
+
+                    <!-- Category Filters -->
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="filterVocab('all')" id="filter-all" class="px-4 py-2 rounded-full text-xs font-bold bg-pastel-slate text-white transition-all">Todas</button>
+                        <button onclick="filterVocab('k2')" id="filter-k2" class="px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-pastel-slate hover:bg-slate-50 transition-all">Uso Diario (K2)</button>
+                        <button onclick="filterVocab('awl')" id="filter-awl" class="px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-pastel-slate hover:bg-slate-50 transition-all">Académicas (AWL)</button>
+                        <button onclick="filterVocab('offlist')" id="filter-offlist" class="px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-pastel-slate hover:bg-slate-50 transition-all">Especializadas</button>
+                    </div>
+                </div>
+
+                <!-- Cards Grid -->
+                <div id="vocabGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Cards will be dynamically injected / rendered here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Lexical Challenge (FR vs MR Quiz) -->
+        <section id="desafio" class="py-16 bg-pastel-rose/30 border-y border-pastel-roseDark/20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6">
+                <div class="text-center mb-10">
+                    <span class="text-xs font-bold uppercase tracking-wider text-pastel-roseDark bg-pastel-rose px-3 py-1 rounded-full">Evaluación Formativa Interactiva</span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl text-pastel-slate font-bold mt-3">Reto: ¿Reconocimiento o Recuerdo?</h2>
+                    <p class="text-sm text-pastel-muted mt-2">Experimenta en primera persona la diferencia entre <em>Form Recognition</em> (Reconocer la palabra) y <em>Meaning Recall</em> (Recordar su significado).</p>
+                </div>
+
+                <!-- Interactive Quiz Container -->
+                <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-200/80">
+                    <!-- Step Indicator -->
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                        <span id="quizStepTitle" class="text-xs font-bold text-pastel-lavenderDark uppercase tracking-wider">Etapa 1 de 2: Reconocimiento de Forma (FR)</span>
+                        <span id="quizScoreBadge" class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">Puntos: 0</span>
+                    </div>
+
+                    <!-- Question Container -->
+                    <div id="quizQuestionBox" class="space-y-6">
+                        <!-- Dynamic content loaded via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Science & Insights Section (Statistical Data simplified) -->
+        <section id="ciencia" class="py-16 md:py-24 bg-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-pastel-lavender px-3 py-1 rounded-full">Evidencia Empírica</span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl text-pastel-slate font-bold mt-3">Los Datos de la Investigación</h2>
+                    <p class="text-sm text-pastel-muted mt-2 max-w-2xl mx-auto">Resultados reales obtenidos al controlar las competencias previas de los estudiantes. Descubre qué modalidad gana en cada categoría.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- Chart Container -->
+                    <div class="lg:col-span-7 bg-pastel-bg p-6 rounded-3xl border border-slate-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-sm font-bold text-pastel-slate">Medias Ajustadas de Aprendizaje</h4>
+                            <span class="text-xs text-pastel-muted">Muestreo: N = 105</span>
+                        </div>
+                        <div class="relative h-72">
+                            <canvas id="resultsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Explanatory Accordion & Scientific Mode Toggle -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="p-6 rounded-3xl bg-pastel-card border border-slate-200">
+                            <h3 class="font-serif-title text-xl font-bold text-pastel-slate mb-3">¿Qué nos enseñan los números?</h3>
+                            <ul class="space-y-3 text-xs text-pastel-muted">
+                                <li class="flex items-start gap-2">
+                                    <span class="w-5 h-5 rounded-full bg-purple-100 text-purple-600 font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
+                                    <span><strong>Reconocimiento de Forma (FR):</strong> La condición de subtítulos en L2 (Inglés) obtiene la puntuación más alta (<strong>22.09</strong>), superando al español y a la ausencia de subtítulos.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
+                                    <span><strong>Recuerdo de Significado (MR):</strong> La condición de subtítulos en L1 (Español) genera la media más alta (<strong>19.30</strong>), favoreciendo la comprensión directa del concepto.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Modal / Toggle for raw scientific stats -->
+                        <div class="p-5 rounded-3xl bg-slate-900 text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="text-sm font-bold">¿Quieres ver la tabla estadística real?</h4>
+                                    <p class="text-xs text-slate-400 mt-0.5">Muestra datos sin ajustar vs datos ajustados ANCOVA.</p>
+                                </div>
+                                <button onclick="toggleDataModal()" class="px-3 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-xs font-bold transition-colors">
+                                    Ver Tabla
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Detailed Research Table -->
+    <div id="dataModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                <div>
+                    <h3 class="font-serif-title text-2xl font-bold text-pastel-slate">Tabla Estadística Completa</h3>
+                    <p class="text-xs text-pastel-muted">Comparativa de Medias Sin Ajustar vs Medias Ajustadas (ANCOVA)</p>
+                </div>
+                <button onclick="toggleDataModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-pastel-slate">
+                    <thead>
+                        <tr class="bg-slate-50 text-pastel-muted uppercase border-b border-slate-200">
+                            <th class="p-3">Variable</th>
+                            <th class="p-3">Condición Subtítulo</th>
+                            <th class="p-3">Media Sin Ajustar ($M$)</th>
+                            <th class="p-3">Media Ajustada ($M$)</th>
+                            <th class="p-3">Error Típico ($SE$)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr>
+                            <td class="p-3 font-semibold" rowspan="3">Reconocimiento de Forma (FR)</td>
+                            <td class="p-3">Sin Subtítulos</td>
+                            <td class="p-3">21.97</td>
+                            <td class="p-3 font-semibold text-slate-500">21.40</td>
+                            <td class="p-3">0.622</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Subtítulos L2 (Inglés)</td>
+                            <td class="p-3">21.94</td>
+                            <td class="p-3 font-bold text-purple-600">22.09 ⭐</td>
+                            <td class="p-3">0.614</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3">Subtítulos L1 (Español)</td>
+                            <td class="p-3">21.34</td>
+                            <td class="p-3 font-semibold text-slate-500">21.75</td>
+                            <td class="p-3">0.620</td>
+                        </tr>
+                        <tr class="bg-slate-50/50">
+                            <td class="p-3 font-semibold" rowspan="3">Recuerdo de Significado (MR)</td>
+                            <td class="p-3">Sin Subtítulos</td>
+                            <td class="p-3">18.91</td>
+                            <td class="p-3 font-semibold text-slate-500">18.07</td>
+                            <td class="p-3">0.579</td>
+                        </tr>
+                        <tr class="bg-slate-50/50">
+                            <td class="p-3">Subtítulos L2 (Inglés)</td>
+                            <td class="p-3">18.06</td>
+                            <td class="p-3 font-semibold text-slate-500">18.28</td>
+                            <td class="p-3">0.572</td>
+                        </tr>
+                        <tr class="bg-slate-50/50">
+                            <td class="p-3">Subtítulos L1 (Español)</td>
+                            <td class="p-3">18.69</td>
+                            <td class="p-3 font-bold text-emerald-600">19.30 ⭐</td>
+                            <td class="p-3">0.577</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-[11px] text-pastel-muted mt-4 italic">* Controlando el tamaño léxico previo a nivel 3.000 (VLT) y el conocimiento inicial de las palabras meta ($N = 105$).</p>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-pastel-slate text-white py-12 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+            <div>
+                <span class="font-serif-title text-2xl font-bold tracking-tight">LinguaLab</span>
+                <p class="text-xs text-slate-400 mt-1">Diseño web e investigación aplicada para la enseñanza de lenguas adicionales.</p>
+            </div>
+            <div class="text-xs text-slate-400">
+                Basado en la investigación empírica sobre aprendizaje de vocabulario mediado por subtítulos (Edres, 2023).
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+
+        // Vocabulary Database
+        const vocabularyData = [
+            {
+                word: "Challenge",
+                translation: "Desafío / Reto",
+                level: "k2",
+                badge: "Uso Diario (K2)",
+                badgeBg: "bg-pastel-peach text-amber-800",
+                example: "Global challenges require innovative solutions.",
+                desc: "Palabra de alta frecuencia en contextos cotidianos y académicos."
+            },
+            {
+                word: "Disease",
+                translation: "Enfermedad",
+                level: "k2",
+                badge: "Uso Diario (K2)",
+                badgeBg: "bg-pastel-peach text-amber-800",
+                example: "Research helps prevent common diseases.",
+                desc: "Término esencial de salud y ciencias del segundo millar."
+            },
+            {
+                word: "Risk",
+                translation: "Riesgo",
+                level: "k2",
+                badge: "Uso Diario (K2)",
+                badgeBg: "bg-pastel-peach text-amber-800",
+                example: "Evaluating risks before making decisions.",
+                desc: "Concepto básico en toma de decisiones y estadística."
+            },
+            {
+                word: "Promote",
+                translation: "Promover / Fomentar",
+                level: "awl",
+                badge: "Académico (AWL)",
+                badgeBg: "bg-pastel-lavender text-purple-800",
+                example: "The campaign aims to promote education.",
+                desc: "Verbo académico de alto impacto en artículos científicos."
+            },
+            {
+                word: "Impact",
+                translation: "Impacto / Efecto",
+                level: "awl",
+                badge: "Académico (AWL)",
+                badgeBg: "bg-pastel-lavender text-purple-800",
+                example: "Analyzing the environmental impact of industry.",
+                desc: "Sustantivo muy frecuente en ponencias y conferencias TED."
+            },
+            {
+                word: "Consumer",
+                translation: "Consumidor",
+                level: "awl",
+                badge: "Académico (AWL)",
+                badgeBg: "bg-pastel-lavender text-purple-800",
+                example: "Consumer behavior changes during crisis.",
+                desc: "Vocabulario clave de economía y comportamiento social."
+            },
+            {
+                word: "Refugee",
+                translation: "Refugiado/a",
+                level: "offlist",
+                badge: "Especializado",
+                badgeBg: "bg-pastel-mint text-emerald-800",
+                example: "Providing aid to refugee communities.",
+                desc: "Palabra temática de geopolítica e historia."
+            },
+            {
+                word: "Carbon dioxide",
+                translation: "Dióxido de carbono",
+                level: "offlist",
+                badge: "Especializado",
+                badgeBg: "bg-pastel-mint text-emerald-800",
+                example: "Trees absorb carbon dioxide from the atmosphere.",
+                desc: "Término específico de ciencias ambientales y clima."
+            },
+            {
+                word: "Nutrition",
+                translation: "Nutrición",
+                level: "offlist",
+                badge: "Especializado",
+                badgeBg: "bg-pastel-mint text-emerald-800",
+                example: "Good nutrition is crucial for young students.",
+                desc: "Término especializado en salud y biología."
+            }
+        ];
+
+        // Quiz State
+        let currentQuizStep = 0;
+        let quizScore = 0;
+        const quizQuestions = [
+            {
+                type: 'FR',
+                title: 'Etapa 1: Reconocimiento de Forma (Form Recognition)',
+                prompt: '¿Recuerdas haber visto la palabra "PROMOTE" durante la simulación?',
+                options: [
+                    { text: 'Sí, la reconozco (Forma identificada)', correct: true, points: 10 },
+                    { text: 'No, no apareció en el contenido', correct: false, points: 0 }
+                ],
+                explanation: '¡Correcto! Los subtítulos en L2 (Inglés) potencian precisamente esta capacidad de recordar si la palabra existió en el insumo audiovisual.'
+            },
+            {
+                type: 'MR',
+                title: 'Etapa 2: Recuerdo de Significado (Meaning Recall)',
+                prompt: '¿Cuál es el significado más preciso del término "IMPACT" en el contexto mostrado?',
+                options: [
+                    { text: 'Efecto o consecuencia sobre una comunidad', correct: true, points: 10 },
+                    { text: 'Impresión de una foto impresa', correct: false, points: 0 },
+                    { text: 'Un acuerdo firmado entre partes', correct: false, points: 0 }
+                ],
+                explanation: '¡Excelente! El significado exacto se consolida de forma superior con subtítulos en L1 (Español) debido a la traducción semántica directa.'
+            }
+        ];
+
+        // Init function
+        window.onload = function() {
+            lucide.createIcons();
+            renderVocabCards('all');
+            renderQuizStep();
+            initChart();
+        };
+
+        // Scroll Helper
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Subtitle Simulator Logic
+        let isPlaying = true;
+        let subtitleMode = 'l2';
+        const subtitleTexts = {
+            l2: '"Global challenges require innovation and community impact."',
+            l1: '"Los desafíos globales requieren innovación e impacto comunitario."',
+            off: ' '
+        };
+
+        function setSubtitleMode(mode) {
+            subtitleMode = mode;
+            const subDisplay = document.getElementById('subtitleDisplay');
+            if (subDisplay) {
+                subDisplay.innerHTML = `<span class="text-pastel-peach">${subtitleTexts[mode]}</span>`;
+            }
+
+            // Update Buttons Styling using exact ID map
+            const btnIds = { l2: 'btnL2', l1: 'btnL1', off: 'btnOff' };
+            ['l2', 'l1', 'off'].forEach(m => {
+                const btn = document.getElementById(btnIds[m]);
+                if (btn) {
+                    if (m === mode) {
+                        btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white transition-all shadow";
+                    } else {
+                        btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all";
+                    }
+                }
+            });
+
+            // Update Cognitive Info
+            const cognitiveTitle = document.getElementById('cognitiveModeTitle');
+            const cognitiveDesc = document.getElementById('cognitiveModeDesc');
+            const frMeterBar = document.getElementById('frMeterBar');
+            const mrMeterBar = document.getElementById('mrMeterBar');
+            const frMeterVal = document.getElementById('frMeterVal');
+            const mrMeterVal = document.getElementById('mrMeterVal');
+
+            if (mode === 'l2') {
+                cognitiveTitle.innerText = "Codificación Doble Intralingüística (Audio L2 + Texto L2)";
+                cognitiveDesc.innerText = "El texto impreso coincide exactamente con el audio. Tu cerebro sincroniza los fonemas y los grafemas, aumentando la retención de la FORMA de la palabra.";
+                frMeterBar.style.width = "90%";
+                mrMeterBar.style.width = "70%";
+                frMeterVal.innerText = "Máxima Eficacia (22.09 ptos)";
+                mrMeterVal.innerText = "Eficacia Media (18.28 ptos)";
+            } else if (mode === 'l1') {
+                cognitiveTitle.innerText = "Procesamiento Interlingüístico (Audio L2 + Texto L1)";
+                cognitiveDesc.innerText = "El texto en tu lengua materna ofrece un anclaje semántico inmediato. Es óptimo para comprender el RECUERDO DEL SIGNIFICADO sin sobrecargar la memoria de trabajo.";
+                frMeterBar.style.width = "75%";
+                mrMeterBar.style.width = "95%";
+                frMeterVal.innerText = "Eficacia Media (21.75 ptos)";
+                mrMeterVal.innerText = "Máxima Eficacia (19.30 ptos)";
+            } else {
+                cognitiveTitle.innerText = "Comprensión Auditiva Pura (Sin Subtítulos)";
+                cognitiveDesc.innerText = "Requiere un alto esfuerzo auditivo. Sin pre-enseñanza previa, la tasa de adquisición incidental es sensiblemente menor para estudiantes intermedios.";
+                frMeterBar.style.width = "65%";
+                mrMeterBar.style.width = "60%";
+                frMeterVal.innerText = "Eficacia Base (21.40 ptos)";
+                mrMeterVal.innerText = "Eficacia Base (18.07 ptos)";
+            }
+        }
+
+        function togglePlaySimulation() {
+            isPlaying = !isPlaying;
+            const playBtn = document.getElementById('playBtn');
+            playBtn.innerHTML = isPlaying ? '<i data-lucide="pause" class="w-5 h-5"></i>' : '<i data-lucide="play" class="w-5 h-5"></i>';
+            lucide.createIcons();
+        }
+
+        // Vocabulary Filter & Render
+        function filterVocab(category) {
+            ['all', 'k2', 'awl', 'offlist'].forEach(cat => {
+                const btn = document.getElementById(`filter-${cat}`);
+                if (cat === category) {
+                    btn.className = "px-4 py-2 rounded-full text-xs font-bold bg-pastel-slate text-white transition-all shadow";
+                } else {
+                    btn.className = "px-4 py-2 rounded-full text-xs font-bold bg-white border border-slate-200 text-pastel-slate hover:bg-slate-50 transition-all";
+                }
+            });
+            renderVocabCards(category);
+        }
+
+        function renderVocabCards(category) {
+            const container = document.getElementById('vocabGrid');
+            const filtered = category === 'all' ? vocabularyData : vocabularyData.filter(v => v.level === category);
+
+            container.innerHTML = filtered.map((v, i) => `
+                <div class="glass-card p-6 rounded-3xl shadow-sm hover:shadow-md transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-3 py-1 rounded-full text-[11px] font-bold ${v.badgeBg}">${v.badge}</span>
+                            <button onclick="speakWord('${v.word}')" title="Escuchar pronunciación" class="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-pastel-lavender flex items-center justify-center text-slate-600 group-hover:text-purple-700 transition-colors">
+                                <i data-lucide="volume-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <h3 class="font-serif-title text-2xl font-bold text-pastel-slate tracking-tight">${v.word}</h3>
+                        <p class="text-xs font-semibold text-pastel-lavenderDark mt-0.5">${v.translation}</p>
+                        <p class="text-xs text-pastel-muted mt-3 leading-relaxed">${v.desc}</p>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-slate-100 bg-slate-50/50 p-3 rounded-2xl">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Ejemplo contextual:</span>
+                        <p class="text-xs italic text-slate-700">"${v.example}"</p>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        function speakWord(word) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'en-US';
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Quiz Interactive Logic
+        function renderQuizStep() {
+            const container = document.getElementById('quizQuestionBox');
+            const stepTitle = document.getElementById('quizStepTitle');
+            const scoreBadge = document.getElementById('quizScoreBadge');
+
+            if (currentQuizStep >= quizQuestions.length) {
+                stepTitle.innerText = "¡Reto Completado!";
+                container.innerHTML = `
+                    <div class="text-center py-6">
+                        <div class="w-16 h-16 rounded-full bg-pastel-mint flex items-center justify-center text-emerald-700 mx-auto mb-4">
+                            <i data-lucide="award" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="font-serif-title text-2xl font-bold text-pastel-slate">¡Excelente trabajo interactivo!</h3>
+                        <p class="text-xs text-pastel-muted mt-2 max-w-md mx-auto leading-relaxed">
+                            Has comprobado cómo el cerebro evalúa de forma distinta la <strong>Forma (FR)</strong> y el <strong>Significado (MR)</strong> de una palabra.
+                        </p>
+                        <button onclick="restartQuiz()" class="mt-6 px-6 py-2.5 rounded-full bg-pastel-slate text-white text-xs font-bold hover:bg-slate-800 transition-all">
+                            Repetir el Reto
+                        </button>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            const q = quizQuestions[currentQuizStep];
+            stepTitle.innerText = q.title;
+            scoreBadge.innerText = `Puntos: ${quizScore}`;
+
+            container.innerHTML = `
+                <div>
+                    <h4 class="text-base sm:text-lg font-semibold text-pastel-slate mb-4">${q.prompt}</h4>
+                    <div class="space-y-3">
+                        ${q.options.map((opt, idx) => `
+                            <button onclick="handleAnswer(${idx})" class="w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-purple-300 hover:bg-purple-50/50 transition-all text-xs font-semibold text-slate-700 flex items-center justify-between group">
+                                <span>${opt.text}</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-purple-600 transition-colors"></i>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function handleAnswer(optIdx) {
+            const q = quizQuestions[currentQuizStep];
+            const selected = q.options[optIdx];
+
+            if (selected.correct) {
+                quizScore += selected.points;
+            }
+
+            currentQuizStep++;
+            renderQuizStep();
+        }
+
+        function restartQuiz() {
+            currentQuizStep = 0;
+            quizScore = 0;
+            renderQuizStep();
+        }
+
+        // Chart.js Data Visualizer
+        function initChart() {
+            const ctx = document.getElementById('resultsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Sin Subtítulos', 'Subtítulos L2 (Inglés)', 'Subtítulos L1 (Español)'],
+                    datasets: [
+                        {
+                            label: 'Reconocimiento de Forma (FR)',
+                            data: [21.40, 22.09, 21.75],
+                            backgroundColor: 'rgba(192, 132, 252, 0.7)',
+                            borderColor: 'rgba(192, 132, 252, 1)',
+                            borderWidth: 2,
+                            borderRadius: 12
+                        },
+                        {
+                            label: 'Recuerdo de Significado (MR)',
+                            data: [18.07, 18.28, 19.30],
+                            backgroundColor: 'rgba(52, 211, 153, 0.7)',
+                            borderColor: 'rgba(52, 211, 153, 1)',
+                            borderWidth: 2,
+                            borderRadius: 12
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { family: 'Plus Jakarta Sans', size: 11 },
+                                boxWidth: 12,
+                                usePointStyle: true
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw} pts (Media Ajustada)`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            min: 15,
+                            max: 24,
+                            grid: { color: 'rgba(226, 232, 240, 0.6)' },
+                            ticks: { font: { family: 'Plus Jakarta Sans', size: 10 } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { family: 'Plus Jakarta Sans', size: 10 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Modal Handler
+        function toggleDataModal() {
+            const modal = document.getElementById('dataModal');
+            modal.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
